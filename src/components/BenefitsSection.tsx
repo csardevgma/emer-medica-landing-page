@@ -1,6 +1,5 @@
-
 import React from 'react';
-import { Ambulance, Phone, Calendar, Home, Users } from 'lucide-react';
+import { Home, Monitor, Ambulance, Clock, Stethoscope, HeartPulse } from 'lucide-react';
 
 interface BenefitCardProps {
   title: string;
@@ -10,12 +9,12 @@ interface BenefitCardProps {
 
 const BenefitCard: React.FC<BenefitCardProps> = ({ title, description, icon }) => {
   return (
-    <div className="benefit-card">
-      <div className="text-emermedica-blue mb-4 flex justify-center">
+    <div className="flex flex-col items-center text-center bg-white rounded-2xl p-8 shadow-md hover:shadow-xl transition-all duration-300 transform hover:-translate-y-2">
+      <div className="mb-6 text-emermedica-blue">
         {icon}
       </div>
-      <h3 className="text-lg font-semibold mb-2">{title}</h3>
-      <p className="text-gray-600 text-sm">{description}</p>
+      <h3 className="text-xl font-semibold text-[#003366] mb-3">{title}</h3>
+      <p className="text-gray-600 text-base">{description}</p>
     </div>
   );
 };
@@ -25,42 +24,44 @@ const BenefitsSection: React.FC = () => {
     {
       title: "Atención médica domiciliaria 24/7",
       description: "Médicos especializados en tu hogar a cualquier hora del día o noche.",
-      icon: <Home size={40} strokeWidth={1.5} />
+      icon: <Home size={48} strokeWidth={1} className="text-[#003366]" />
     },
     {
       title: "Telemedicina inmediata",
       description: "Consultas virtuales con médicos especializados sin salir de casa.",
-      icon: <Phone size={40} strokeWidth={1.5} />
+      icon: <Monitor size={48} strokeWidth={1} className="text-[#003366]" />
     },
     {
       title: "Ambulancias medicalizadas",
       description: "Flota de ambulancias equipadas y personal capacitado para emergencias.",
-      icon: <Ambulance size={40} strokeWidth={1.5} />
+      icon: <Ambulance size={48} strokeWidth={1} className="text-[#003366]" />
     },
     {
       title: "Urgencias médicas rápidas",
       description: "Atención prioritaria en situaciones de emergencia médica.",
-      icon: <Calendar size={40} strokeWidth={1.5} />
+      icon: <Clock size={48} strokeWidth={1} className="text-[#003366]" />
     },
     {
       title: "Consulta médica general",
       description: "Atención médica general para toda la familia cuando lo necesites.",
-      icon: <Users size={40} strokeWidth={1.5} />
+      icon: <Stethoscope size={48} strokeWidth={1} className="text-[#003366]" />
     },
     {
       title: "Cuidado para mascotas",
       description: "Servicios veterinarios de urgencia para tus mejores amigos.",
-      icon: <Home size={40} strokeWidth={1.5} />
+      icon: <HeartPulse size={48} strokeWidth={1} className="text-[#003366]" /> // Mejor icono para mascotas
     },
   ];
 
   return (
-    <section className="bg-white py-16">
-      <div className="section-container">
-        <h2 className="section-title">Nuestros Servicios</h2>
-        <p className="lead-text">Cuidamos de ti y tu familia con los mejores servicios médicos domiciliarios</p>
+    <section className="bg-gray-50 py-20">
+      <div className="section-container text-center">
+        <h2 className="text-3xl md:text-4xl font-bold text-[#003366] mb-6">Nuestros Servicios</h2>
+        <p className="text-lg md:text-xl text-gray-700 mb-12 max-w-3xl mx-auto">
+          Cuidamos de ti y tu familia con los mejores servicios médicos domiciliarios.
+        </p>
         
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 mt-12">
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
           {benefits.map((benefit, index) => (
             <BenefitCard
               key={index}

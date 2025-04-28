@@ -1,6 +1,5 @@
-
 import React from 'react';
-import { Check } from 'lucide-react';
+import { CheckCircle } from 'lucide-react';
 
 const WhyChooseSection: React.FC = () => {
   const reasons = [
@@ -14,31 +13,36 @@ const WhyChooseSection: React.FC = () => {
   ];
 
   return (
-    <section className="bg-emermedica-blue text-white py-16">
+    <section className="bg-[#003366] text-white py-20">
       <div className="section-container">
-        <h2 className="text-3xl font-bold mb-8 text-center">¿Por qué elegir Emermédica?</h2>
         
-        <div className="flex flex-col md:flex-row items-center justify-between">
-          <div className="md:w-1/2 mb-10 md:mb-0">
+        <h2 className="text-4xl md:text-5xl font-bold text-center mb-12 leading-tight">
+          ¿Por qué elegir <span className="text-[#28a745]">Emermédica</span>?
+        </h2>
+
+        <div className="flex flex-col md:flex-row items-center gap-16">
+          
+          {/* Imagen */}
+          <div className="w-full md:w-1/2 animate-fade-in">
             <img 
-              src="https://images.unsplash.com/photo-1598256989800-fe5f95da9326?auto=format&fit=crop&q=80&w=800" 
+              src="https://res.cloudinary.com/dl4buqfbp/image/upload/v1745878238/1_znknrr.jpg" 
               alt="Equipo médico de Emermédica" 
-              className="rounded-lg shadow-xl mx-auto"
+              className="rounded-2xl shadow-2xl mx-auto max-w-full h-auto"
             />
           </div>
-          
-          <div className="md:w-1/2 md:pl-10">
-            <ul className="space-y-4">
+
+          {/* Lista de razones */}
+          <div className="w-full md:w-1/2 animate-fade-in-up">
+            <ul className="space-y-6">
               {reasons.map((reason, index) => (
-                <li key={index} className="flex items-start">
-                  <span className="mr-2 mt-1 bg-emermedica-green rounded-full p-1">
-                    <Check size={16} strokeWidth={3} />
-                  </span>
-                  <span className="text-lg">{reason}</span>
+                <li key={index} className="flex items-start gap-4">
+                  <CheckCircle size={32} className="text-[#28a745] flex-shrink-0 mt-1" />
+                  <span className="text-lg md:text-xl font-medium">{reason}</span>
                 </li>
               ))}
             </ul>
           </div>
+
         </div>
       </div>
     </section>
