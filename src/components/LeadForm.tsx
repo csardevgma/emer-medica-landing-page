@@ -4,6 +4,14 @@ import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 import { Label } from '@/components/ui/label';
 import { toast } from 'sonner';
+import {
+  Select,
+  SelectContent,
+  SelectItem,
+  SelectTrigger,
+  SelectValue,
+} from "@/components/ui/select";
+import { Form, FormControl, FormField, FormItem, FormMessage } from "@/components/ui/form";
 
 const LeadForm: React.FC = () => {
   const [formData, setFormData] = useState({
@@ -19,6 +27,17 @@ const LeadForm: React.FC = () => {
     email: '',
     city: '',
   });
+
+  const colombianCities = [
+    "Barranquilla",
+    "Bogotá DC",
+    "Bucaramanga",
+    "Cali",
+    "Cartagena",
+    "Medellín",
+    "Neiva",
+    "Villavicencio"
+  ];
 
   const validateForm = () => {
     let isValid = true;
@@ -54,7 +73,7 @@ const LeadForm: React.FC = () => {
     }
 
     // Validate city
-    if (!formData.city.trim()) {
+    if (!formData.city) {
       newErrors.city = 'La ciudad es obligatoria';
       isValid = false;
     }
@@ -69,6 +88,14 @@ const LeadForm: React.FC = () => {
     // Clear error when user types
     if (errors[name as keyof typeof errors]) {
       setErrors(prev => ({ ...prev, [name]: '' }));
+    }
+  };
+
+  const handleSelectChange = (value: string) => {
+    setFormData(prev => ({ ...prev, city: value }));
+    // Clear error when user selects a city
+    if (errors.city) {
+      setErrors(prev => ({ ...prev, city: '' }));
     }
   };
 
@@ -149,14 +176,24 @@ const LeadForm: React.FC = () => {
             
             <div>
               <Label htmlFor="city">Ciudad de residencia</Label>
-              <Input
-                id="city"
-                name="city"
-                placeholder="Ej: Bogotá"
-                value={formData.city}
-                onChange={handleChange}
-                className={`form-input ${errors.city ? 'border-emermedica-red' : ''}`}
-              />
+              <Select 
+                value={formData.city} 
+                onValueChange={handleSelectChange}
+              >
+                <SelectTrigger 
+                  id="city"
+                  className={`form-input ${errors.city ? 'border-emermedica-red' : ''}`}
+                >
+                  <SelectValue placeholder="Selecciona tu ciudad" />
+                </SelectTrigger>
+                <SelectContent>
+                  {colombianCities.map((city) => (
+                    <SelectItem key={city} value={city}>
+                      {city}
+                    </SelectItem>
+                  ))}
+                </SelectContent>
+              </Select>
               {errors.city && <p className="text-emermedica-red text-sm mt-1">{errors.city}</p>}
             </div>
             
