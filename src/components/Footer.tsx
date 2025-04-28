@@ -16,7 +16,7 @@ const Footer: React.FC = () => {
                 <Logo />
               </div>
               <img 
-                src="/emermedica-axa-logo.png" 
+                src="https://res.cloudinary.com/dl4buqfbp/image/upload/v1745864458/logo_axxa_colpatria_vm1yji.png" 
                 alt="AXA COLPATRIA" 
                 className="ml-4 h-10"
               />

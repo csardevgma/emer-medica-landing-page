@@ -55,7 +55,7 @@ const HeroSection: React.FC = () => {
               <div className="absolute -top-4 -left-4 w-32 h-32 bg-emermedica-blue/10 rounded-full z-0"></div>
               <div className="absolute -bottom-4 -right-4 w-32 h-32 bg-emermedica-green/10 rounded-full z-0"></div>
               <img 
-                src="/emermedica-family.png" 
+                src="https://res.cloudinary.com/dl4buqfbp/image/upload/v1745864458/banner_eczayj.png" 
                 alt="Familia protegida por Emermédica" 
                 className="rounded-lg shadow-xl object-cover w-full relative z-10"
               />

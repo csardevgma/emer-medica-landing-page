@@ -16,7 +16,7 @@ const PetCareSection: React.FC = () => {
         <div className="flex flex-col md:flex-row items-center">
           <div className="md:w-1/2 mb-8 md:mb-0">
             <img 
-              src="/emermedica-ambulance.png" 
+              src="https://res.cloudinary.com/dl4buqfbp/image/upload/v1745864459/ambu_zuqecg.png" 
               alt="Ambulancia Emermédica" 
               className="rounded-lg shadow-xl mx-auto"
             />
