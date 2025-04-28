@@ -5,7 +5,8 @@ import BenefitsSection from '@/components/BenefitsSection';
 import WhyChooseSection from '@/components/WhyChooseSection';
 import PetCareSection from '@/components/PetCareSection';
 import LeadForm from '@/components/LeadForm';
-import VideoSection from '@/components/VideoSection';
+import FloatingButton from '@/components/FloatingButton';
+
 import Footer from '@/components/Footer';
 import { Toaster } from "@/components/ui/sonner";
 
@@ -43,22 +44,16 @@ const Index: React.FC = () => {
     <div className="min-h-screen">
       <Toaster position="top-center" />
       
-      {/* Fixed CTA Button that follows user as they scroll */}
-      <div className="fixed bottom-5 right-5 z-50 md:hidden">
-        <a 
-          href="#lead-form" 
-          className="bg-emermedica-green text-white px-4 py-3 rounded-full shadow-lg flex items-center justify-center"
-        >
-          AFÍLIATE AHORA
-        </a>
-      </div>
+      <FloatingButton targetId="lead-form" />
       
       <HeroSection />
       <BenefitsSection />
       <WhyChooseSection />
       <PetCareSection />
-      <VideoSection />
-      <LeadForm />
+      
+      <div id="lead-form">
+        <LeadForm />
+      </div>
       <Footer />
     </div>
   );

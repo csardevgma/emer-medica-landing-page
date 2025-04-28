@@ -1,4 +1,3 @@
-
 import React, { useState } from 'react';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
@@ -11,7 +10,6 @@ import {
   SelectTrigger,
   SelectValue,
 } from "@/components/ui/select";
-import { Form, FormControl, FormField, FormItem, FormMessage } from "@/components/ui/form";
 
 const LeadForm: React.FC = () => {
   const [formData, setFormData] = useState({
@@ -20,7 +18,7 @@ const LeadForm: React.FC = () => {
     email: '',
     city: '',
   });
-  
+
   const [errors, setErrors] = useState({
     fullName: '',
     phone: '',
@@ -29,32 +27,18 @@ const LeadForm: React.FC = () => {
   });
 
   const colombianCities = [
-    "Barranquilla",
-    "Bogotá DC",
-    "Bucaramanga",
-    "Cali",
-    "Cartagena",
-    "Medellín",
-    "Neiva",
-    "Villavicencio"
+    "Barranquilla", "Bogotá DC", "Bucaramanga", "Cali",
+    "Cartagena", "Medellín", "Neiva", "Villavicencio"
   ];
 
   const validateForm = () => {
     let isValid = true;
-    const newErrors = {
-      fullName: '',
-      phone: '',
-      email: '',
-      city: '',
-    };
+    const newErrors = { fullName: '', phone: '', email: '', city: '' };
 
-    // Validate name
     if (!formData.fullName.trim()) {
       newErrors.fullName = 'El nombre es obligatorio';
       isValid = false;
     }
-
-    // Validate phone
     if (!formData.phone.trim()) {
       newErrors.phone = 'El teléfono es obligatorio';
       isValid = false;
@@ -62,8 +46,6 @@ const LeadForm: React.FC = () => {
       newErrors.phone = 'Ingresa un número de teléfono válido';
       isValid = false;
     }
-
-    // Validate email
     if (!formData.email.trim()) {
       newErrors.email = 'El correo es obligatorio';
       isValid = false;
@@ -71,8 +53,6 @@ const LeadForm: React.FC = () => {
       newErrors.email = 'Ingresa un correo electrónico válido';
       isValid = false;
     }
-
-    // Validate city
     if (!formData.city) {
       newErrors.city = 'La ciudad es obligatoria';
       isValid = false;
@@ -85,7 +65,6 @@ const LeadForm: React.FC = () => {
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const { name, value } = e.target;
     setFormData(prev => ({ ...prev, [name]: value }));
-    // Clear error when user types
     if (errors[name as keyof typeof errors]) {
       setErrors(prev => ({ ...prev, [name]: '' }));
     }
@@ -93,7 +72,6 @@ const LeadForm: React.FC = () => {
 
   const handleSelectChange = (value: string) => {
     setFormData(prev => ({ ...prev, city: value }));
-    // Clear error when user selects a city
     if (errors.city) {
       setErrors(prev => ({ ...prev, city: '' }));
     }
@@ -101,53 +79,46 @@ const LeadForm: React.FC = () => {
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
-    
     if (validateForm()) {
-      // Here you would normally send the data to a backend
-      console.log('Form submitted with data:', formData);
-      
-      // Show success message
-      toast.success('¡Gracias por tu interés! Pronto nos comunicaremos contigo', {
+      console.log('Form submitted:', formData);
+
+      toast.success('¡Gracias por tu interés!', {
         description: 'Hemos recibido tus datos correctamente',
       });
-      
-      // Reset form
-      setFormData({
-        fullName: '',
-        phone: '',
-        email: '',
-        city: '',
-      });
+
+      setFormData({ fullName: '', phone: '', email: '', city: '' });
     }
   };
 
   return (
-    <section className="bg-white py-16" id="lead-form">
+    <section id="lead-form" className="bg-white py-16">
       <div className="section-container">
-        <div className="max-w-lg mx-auto bg-white rounded-lg shadow-xl p-8 border border-gray-100">
-          <h2 className="text-2xl font-bold mb-6 text-emermedica-blue text-center">
-            ¡Afíliate a Emermédica hoy!
-          </h2>
-          <p className="text-gray-600 mb-6 text-center">
-            Completa el formulario y un asesor se pondrá en contacto contigo para brindarte toda la información sobre nuestros planes.
-          </p>
+        <div className="max-w-lg mx-auto bg-white rounded-2xl p-10 shadow-xl border border-[#003366]/20 relative overflow-hidden animate-fade-in">
           
-          <form onSubmit={handleSubmit} className="space-y-4">
+          {/* Línea decorativa */}
+          <div className="absolute top-0 left-0 w-full h-1 bg-[#28a745]"></div>
+
+          <h2 className="text-3xl font-bold text-[#003366] text-center mb-4">¡Afíliate a Emermédica hoy!</h2>
+          <p className="text-gray-700 text-center mb-8 text-base">Completa el formulario y un asesor se pondrá en contacto contigo.</p>
+
+          <form onSubmit={handleSubmit} className="space-y-6">
+            {/* Nombre */}
             <div>
-              <Label htmlFor="fullName">Nombre completo</Label>
+              <Label htmlFor="fullName" className="text-[#003366] font-medium block mb-1">Nombre completo</Label>
               <Input
                 id="fullName"
                 name="fullName"
                 placeholder="Escribe tu nombre completo"
                 value={formData.fullName}
                 onChange={handleChange}
-                className={`form-input ${errors.fullName ? 'border-emermedica-red' : ''}`}
+                className={`h-12 rounded-lg border focus:border-[#28a745] transition ${errors.fullName ? 'border-red-500' : 'border-gray-300'}`}
               />
-              {errors.fullName && <p className="text-emermedica-red text-sm mt-1">{errors.fullName}</p>}
+              {errors.fullName && <p className="text-red-500 text-sm mt-1">{errors.fullName}</p>}
             </div>
-            
+
+            {/* Teléfono */}
             <div>
-              <Label htmlFor="phone">Teléfono de contacto</Label>
+              <Label htmlFor="phone" className="text-[#003366] font-medium block mb-1">Teléfono de contacto</Label>
               <Input
                 id="phone"
                 name="phone"
@@ -155,13 +126,14 @@ const LeadForm: React.FC = () => {
                 placeholder="Ej: 3001234567"
                 value={formData.phone}
                 onChange={handleChange}
-                className={`form-input ${errors.phone ? 'border-emermedica-red' : ''}`}
+                className={`h-12 rounded-lg border focus:border-[#28a745] transition ${errors.phone ? 'border-red-500' : 'border-gray-300'}`}
               />
-              {errors.phone && <p className="text-emermedica-red text-sm mt-1">{errors.phone}</p>}
+              {errors.phone && <p className="text-red-500 text-sm mt-1">{errors.phone}</p>}
             </div>
-            
+
+            {/* Correo */}
             <div>
-              <Label htmlFor="email">Correo electrónico</Label>
+              <Label htmlFor="email" className="text-[#003366] font-medium block mb-1">Correo electrónico</Label>
               <Input
                 id="email"
                 name="email"
@@ -169,20 +141,18 @@ const LeadForm: React.FC = () => {
                 placeholder="tu@email.com"
                 value={formData.email}
                 onChange={handleChange}
-                className={`form-input ${errors.email ? 'border-emermedica-red' : ''}`}
+                className={`h-12 rounded-lg border focus:border-[#28a745] transition ${errors.email ? 'border-red-500' : 'border-gray-300'}`}
               />
-              {errors.email && <p className="text-emermedica-red text-sm mt-1">{errors.email}</p>}
+              {errors.email && <p className="text-red-500 text-sm mt-1">{errors.email}</p>}
             </div>
-            
+
+            {/* Ciudad */}
             <div>
-              <Label htmlFor="city">Ciudad de residencia</Label>
-              <Select 
-                value={formData.city} 
-                onValueChange={handleSelectChange}
-              >
-                <SelectTrigger 
+              <Label htmlFor="city" className="text-[#003366] font-medium block mb-1">Ciudad de residencia</Label>
+              <Select value={formData.city} onValueChange={handleSelectChange}>
+                <SelectTrigger
                   id="city"
-                  className={`form-input ${errors.city ? 'border-emermedica-red' : ''}`}
+                  className={`h-12 rounded-lg border focus:border-[#28a745] transition ${errors.city ? 'border-red-500' : 'border-gray-300'}`}
                 >
                   <SelectValue placeholder="Selecciona tu ciudad" />
                 </SelectTrigger>
@@ -194,16 +164,23 @@ const LeadForm: React.FC = () => {
                   ))}
                 </SelectContent>
               </Select>
-              {errors.city && <p className="text-emermedica-red text-sm mt-1">{errors.city}</p>}
+              {errors.city && <p className="text-red-500 text-sm mt-1">{errors.city}</p>}
             </div>
-            
-            <Button type="submit" className="w-full cta-button">
-              AFÍLIATE AHORA
-            </Button>
-            
-            <p className="text-xs text-gray-500 text-center mt-4">
-              Al enviar este formulario, aceptas nuestra política de privacidad y el tratamiento de tus datos personales.
-            </p>
+
+            {/* Botón y seguridad */}
+            <div className="space-y-4 mt-6">
+              <Button
+                type="submit"
+                className="w-full h-14 bg-[#28a745] hover:bg-[#28a745]/90 text-white font-bold rounded-xl shadow-md hover:shadow-lg transform hover:scale-[1.02] transition-all duration-300"
+              >
+                AFÍLIATE AHORA
+              </Button>
+
+              <div className="flex items-center justify-center text-gray-600 text-sm mt-2">
+                <span className="text-xl mr-2">🔒</span>
+                Tus datos están 100% protegidos.
+              </div>
+            </div>
           </form>
         </div>
       </div>

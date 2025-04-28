@@ -1,4 +1,3 @@
-
 import React from 'react';
 import { Button } from "@/components/ui/button";
 import Logo from './Logo';
@@ -12,55 +11,49 @@ const HeroSection: React.FC = () => {
   };
 
   return (
-    <section className="bg-gradient-to-b from-blue-50 to-white py-12 md:py-20">
-      <div className="container mx-auto px-4">
-        <div className="flex justify-start mb-12">
-          <Logo />
-        </div>
-        
-        <div className="flex flex-col md:flex-row items-center">
-          <div className="md:w-1/2 animate-fade-in">
-            <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold text-emermedica-blue mb-4">
-              Tu Salud en las Mejores Manos
-            </h1>
-            <p className="text-xl md:text-2xl text-gray-600 mb-8">
-              Emergencias médicas y consultas domiciliarias 24/7 en Colombia
-            </p>
-            <div className="flex flex-wrap gap-4">
-              <Button 
-                className="cta-button text-lg" 
-                onClick={scrollToForm}
-              >
-                AFÍLIATE AHORA
-              </Button>
-              <a 
-                href="https://wa.link/3gcsyp"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="inline-flex items-center justify-center gap-2 bg-emermedica-blue text-white font-medium py-3 px-8 rounded-lg shadow-md hover:bg-emermedica-blue/90 transition duration-300 text-lg"
-              >
-                <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="lucide lucide-whatsapp">
-                  <path d="M3 21l1.65-3.8a9 9 0 1 1 3.4 2.9L3 21" />
-                  <path d="M9 10a.5.5 0 0 0 1 0V9a.5.5 0 0 0-1 0v1Z" />
-                  <path d="M13 10a.5.5 0 0 0 1 0V9a.5.5 0 0 0-1 0v1Z" />
-                  <path d="M9 14a5 5 0 0 0 6 0" />
-                </svg>
-                CONTÁCTANOS
-              </a>
-            </div>
-          </div>
-          
-          <div className="md:w-1/2 mt-10 md:mt-0">
-            <div className="relative">
-              <div className="absolute -top-4 -left-4 w-32 h-32 bg-emermedica-blue/10 rounded-full z-0"></div>
-              <div className="absolute -bottom-4 -right-4 w-32 h-32 bg-emermedica-green/10 rounded-full z-0"></div>
-              <img 
-                src="https://res.cloudinary.com/dl4buqfbp/image/upload/v1745864458/banner_eczayj.png" 
-                alt="Familia protegida por Emermédica" 
-                className="rounded-lg shadow-xl object-cover w-full relative z-10"
-              />
-            </div>
-          </div>
+    <section
+      className="relative min-h-[85vh] bg-cover bg-center bg-no-repeat overflow-hidden"
+      style={{ backgroundImage: "url('https://res.cloudinary.com/dl4buqfbp/image/upload/v1745864458/banner_eczayj.png')" }}
+    >
+      {/* Overlay para mejor contraste */}
+      <div className="absolute inset-0 bg-white/60"></div>
+
+      {/* Contenido */}
+      <div className="relative z-10 flex flex-col justify-center items-center text-center px-6 py-12 min-h-[85vh]">
+        {/* Logo */}
+        <Logo className="w-64 mb-10" />
+
+       {/* Título principal */}
+      <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold text-[#003366] leading-tight mb-4">
+        Tu Salud en las Mejores Manos
+      </h1>
+
+       {/* Subtítulo */}
+        <p className="text-xl md:text-2xl lg:text-3xl text-gray-700 font-semibold leading-relaxed mb-8">
+          Emergencias médicas y consultas domiciliarias 24/7 en Colombia
+        </p>
+
+        {/* Botones */}
+        <div className="flex flex-col md:flex-row items-center justify-center gap-4 md:gap-6">
+          <Button 
+            onClick={scrollToForm}
+            className="bg-[#28a745] hover:bg-[#28a745]/90 text-white font-bold px-8 py-4 text-lg md:text-xl rounded-xl shadow-md hover:shadow-lg transform hover:scale-[1.02] transition-all duration-300 focus:outline-none focus:ring-2 focus:ring-[#28a745]/60 focus:ring-offset-2"
+          >
+            AFÍLIATE AHORA
+          </Button>
+
+          <Button
+            asChild
+            className="bg-[#003366] hover:bg-[#003366]/90 text-white font-bold px-8 py-4 text-lg md:text-xl rounded-xl shadow-md hover:shadow-lg transform hover:scale-[1.02] transition-all duration-300 focus:outline-none focus:ring-2 focus:ring-[#003366]/60 focus:ring-offset-2"
+          >
+            <a
+              href="https://wa.link/3gcsyp"
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              CONTÁCTANOS
+            </a>
+          </Button>
         </div>
       </div>
     </section>
