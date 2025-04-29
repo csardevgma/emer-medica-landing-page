@@ -9,7 +9,7 @@ import {
   SelectItem,
   SelectTrigger,
   SelectValue,
-} from "@/components/ui/select";
+} from '@/components/ui/select';
 
 const LeadForm: React.FC = () => {
   const [formData, setFormData] = useState({
@@ -27,8 +27,8 @@ const LeadForm: React.FC = () => {
   });
 
   const colombianCities = [
-    "Barranquilla", "Bogotá DC", "Bucaramanga", "Cali",
-    "Cartagena", "Medellín", "Neiva", "Villavicencio"
+    'Barranquilla', 'Bogotá DC', 'Bucaramanga', 'Cali',
+    'Cartagena', 'Medellín', 'Neiva', 'Villavicencio'
   ];
 
   const validateForm = () => {
@@ -77,16 +77,30 @@ const LeadForm: React.FC = () => {
     }
   };
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     if (validateForm()) {
-      console.log('Form submitted:', formData);
+      try {
+        const response = await fetch('https://n8n2-n8n.bd7xhy.easypanel.host/webhook/formsiempremermedica', {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json',
+          },
+          body: JSON.stringify(formData),
+        });
 
-      toast.success('¡Gracias por tu interés!', {
-        description: 'Hemos recibido tus datos correctamente',
-      });
+        if (!response.ok) throw new Error('Error al enviar datos');
 
-      setFormData({ fullName: '', phone: '', email: '', city: '' });
+        toast.success('¡Gracias por tu interés!', {
+          description: 'Hemos recibido tus datos correctamente.',
+        });
+
+        setFormData({ fullName: '', phone: '', email: '', city: '' });
+      } catch (error) {
+        toast.error('Hubo un error al enviar el formulario.', {
+          description: 'Por favor intenta de nuevo.',
+        });
+      }
     }
   };
 
@@ -94,8 +108,8 @@ const LeadForm: React.FC = () => {
     <section id="lead-form" className="bg-white py-16">
       <div className="section-container">
         <div className="max-w-lg mx-auto bg-white rounded-2xl p-10 shadow-xl border border-[#003366]/20 relative overflow-hidden animate-fade-in">
-          
-          {/* Línea decorativa */}
+
+          {/* Línea decorativa superior */}
           <div className="absolute top-0 left-0 w-full h-1 bg-[#28a745]"></div>
 
           <h2 className="text-3xl font-bold text-[#003366] text-center mb-4">¡Afíliate a Emermédica hoy!</h2>
@@ -157,17 +171,15 @@ const LeadForm: React.FC = () => {
                   <SelectValue placeholder="Selecciona tu ciudad" />
                 </SelectTrigger>
                 <SelectContent>
-                  {colombianCities.map((city) => (
-                    <SelectItem key={city} value={city}>
-                      {city}
-                    </SelectItem>
+                  {colombianCities.map(city => (
+                    <SelectItem key={city} value={city}>{city}</SelectItem>
                   ))}
                 </SelectContent>
               </Select>
               {errors.city && <p className="text-red-500 text-sm mt-1">{errors.city}</p>}
             </div>
 
-            {/* Botón y seguridad */}
+            {/* Botón de envío y seguridad */}
             <div className="space-y-4 mt-6">
               <Button
                 type="submit"
@@ -175,11 +187,9 @@ const LeadForm: React.FC = () => {
               >
                 AFÍLIATE AHORA
               </Button>
-
-              <div className="flex items-center justify-center text-gray-600 text-sm mt-2">
-                <span className="text-xl mr-2">🔒</span>
-                Tus datos están 100% protegidos.
-              </div>
+              <div className="flex items-center justify-center text-gray-600 text-xs mt-2 text-center">
+  Al enviar este formulario aceptas nuestros términos y condiciones. Tus datos se usarán solo para contactarte sobre Emermédica y no se compartirán con terceros.
+</div>
             </div>
           </form>
         </div>
@@ -187,5 +197,4 @@ const LeadForm: React.FC = () => {
     </section>
   );
 };
-
 export default LeadForm;

@@ -16,7 +16,7 @@ const HeroSection: React.FC = () => {
       style={{ backgroundImage: "url('https://res.cloudinary.com/dl4buqfbp/image/upload/v1745864458/banner_eczayj.png')" }}
     >
       {/* Overlay para mejor contraste */}
-      <div className="absolute inset-0 bg-white/60"></div>
+      <div className="absolute inset-0 bg-white/65"></div>
 
       {/* Contenido */}
       <div className="relative z-10 flex flex-col justify-center items-center text-center px-6 py-12 min-h-[85vh]">
@@ -47,7 +47,7 @@ const HeroSection: React.FC = () => {
             className="bg-[#003366] hover:bg-[#003366]/90 text-white font-bold px-8 py-4 text-lg md:text-xl rounded-xl shadow-md hover:shadow-lg transform hover:scale-[1.02] transition-all duration-300 focus:outline-none focus:ring-2 focus:ring-[#003366]/60 focus:ring-offset-2"
           >
             <a
-              href="https://wa.link/3gcsyp"
+              href="https://wa.link/bu57jm"
               target="_blank"
               rel="noopener noreferrer"
             >
