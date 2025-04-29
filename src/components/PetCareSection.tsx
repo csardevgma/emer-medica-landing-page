@@ -37,7 +37,7 @@ const PetCareSection: React.FC = () => {
                 className="bg-[#003366] hover:bg-[#003366]/90 text-white font-bold px-8 py-4 rounded-xl text-lg shadow-md hover:shadow-lg transform hover:scale-[1.02] transition-all duration-300 w-full md:w-auto"
               >
                 <a 
-                  href="https://wa.link/3gcsyp"
+                  href="https://wa.link/bu57jm"
                   target="_blank"
                   rel="noopener noreferrer"
                 >
