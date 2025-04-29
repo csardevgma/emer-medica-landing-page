@@ -65,7 +65,8 @@ const Footer: React.FC = () => {
           </div>
         </div>
 
-        {/* Línea divisoria + Legal */}
+        {/* Línea divisoria + Legal 
+       
         <div className="border-t border-white/20 pt-6 flex flex-col md:flex-row items-center justify-between text-xs text-gray-400 gap-4">
           <p>© {currentYear} Emermédica. Todos los derechos reservados.</p>
           <div className="flex gap-4">
@@ -73,6 +74,26 @@ const Footer: React.FC = () => {
             <a href="#" className="hover:underline hover:text-white transition">Términos y condiciones</a>
           </div>
         </div>
+      */}
+      
+      <div className="border-t border-white/20 pt-6 flex flex-col md:flex-row items-center justify-between text-xs text-gray-400 gap-4">
+  <p>© {currentYear} Emermédica. Todos los derechos reservados.</p>
+  <div className="flex flex-col md:flex-row items-center gap-2 md:gap-4">
+    <a href="#" className="hover:underline hover:text-white transition">Políticas de privacidad</a>
+    <a href="#" className="hover:underline hover:text-white transition">Términos y condiciones</a>
+    <span className="text-gray-400 hidden md:inline">|</span>
+    <a 
+      href="https://www.soloesunclick.com/" 
+      target="_blank" 
+      rel="noopener noreferrer" 
+      className="hover:text-white transition underline underline-offset-4 decoration-dotted"
+    >
+      Sitio web desarrollado por <strong>SoloesunClick</strong>
+    </a>
+  </div>
+</div>
+
+      
       </div>
     </footer>
   );
